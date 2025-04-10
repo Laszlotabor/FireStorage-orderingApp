@@ -1,0 +1,39 @@
+/* Container Styling */
+.storage-list-container {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    
+}
+
+/* Storage Item Container */
+.storage-container {
+    display: flex;
+    justify-content: space-between;
+    /* Ensures button stays on the right */
+    align-items: center;
+    /* Aligns items vertically */
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #a9c4e2;
+    margin-bottom: 15px;
+}
+
+
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .storage-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    button {
+        align-self: flex-end;
+        /* Keeps the button aligned right on smaller screens */
+    }
+}

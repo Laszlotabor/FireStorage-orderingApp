@@ -1,0 +1,13 @@
+<div class="storage-list-container">
+  <h2>All Storages</h2>
+  <ul  *ngIf="storages$ | async as storages; else noStorages">
+    <li (click)="viewStorageDetail(storage.id!)" class="storage-container"*ngFor="let storage of storages">
+      <span>{{ storage.name }} (Created by: {{ storage.creatorId }})</span>
+      <button (click)="deleteStorage(storage.id!)" class="btn btn-sm btn-outline-danger button">Delete Storage</button>
+    </li>
+  </ul>
+
+  <ng-template #noStorages>
+    <p>No storages found.</p>
+  </ng-template>
+</div>

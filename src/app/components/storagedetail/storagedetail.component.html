@@ -1,0 +1,44 @@
+<div class="storage-detail-container" *ngIf="storage$ | async as storage; else loading">
+  <h2>{{ storage.name }} - Details</h2>
+  <h3><strong>Creator:</strong> {{ storage.creatorId }}</h3>
+
+  <!-- Add Item Input Group -->
+  <div class="input-group mb-3">
+    <span class="input-group-text">Add item</span>
+    <input
+      type="text"
+      class="form-control"
+      [(ngModel)]="newItemName"
+      placeholder="Enter item name"
+    />
+    <button class="btn btn-primary" (click)="addItem()">Add</button>
+  </div>
+
+  <div class="storage-columns">
+    <!-- Items List -->
+    <div class="storage-section">
+      <h4>Items in Storage</h4>
+      <ul>
+        <li *ngFor="let item of storage.items">
+          {{ item.name }}
+        </li>
+      </ul>
+    </div>
+
+    <!-- Orders List -->
+    <div class="storage-section">
+      <h4>Orders</h4>
+      <ul>
+        <li *ngFor="let order of storage.orders">
+          {{ order.name }} (Qty Ordered: {{ order.quantityOrdered }})
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <button (click)="goBack()" class="btn btn-secondary mt-3">Back to Storages</button>
+</div>
+
+<ng-template #loading>
+  <p>Loading storage details...</p>
+</ng-template>

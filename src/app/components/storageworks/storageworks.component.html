@@ -1,0 +1,11 @@
+<div class="storage-creator-container">
+  <h2>Create a New Storage</h2>
+  
+  <label for="storageName">Storage Name:</label>
+  <input type="text" id="storageName" [(ngModel)]="storageName" placeholder="Enter storage name" />
+
+  <label for="creatorName">Creator Name:</label>
+  <input type="text" id="creatorName" [(ngModel)]="creatorName" placeholder="Enter creator name" />
+
+  <button (click)="addStorage()">Add Storage</button>
+</div>
