@@ -1,34 +1,59 @@
-<div class="storage-detail-container" *ngIf="storage$ | async as storage; else loading">
-  <h2>{{ storage.name }} - Details</h2>
-  <h3><strong>Creator:</strong> {{ storage.creatorId }}</h3>
-
-  <!-- Add Item Input Group -->
-  <div class="input-group mb-3">
-    <span class="input-group-text">Add item</span>
-    <input
-      type="text"
-      class="form-control"
-      [(ngModel)]="newItemName"
-      placeholder="Enter item name"
-    />
-    <button class="btn btn-primary" (click)="addItem()">Add</button>
+<div class="storage-container" *ngIf="storage$ | async as storage; else loading">
+  <!-- Header -->
+  <div class="header">
+    <h2>{{ storage.name }}</h2>
+    <h4>Creator: <span>{{ storage.creatorId }}</span></h4>
   </div>
 
-  <div class="storage-columns">
+  <!-- Add New Item -->
+  <div class="add-item-card">
+    <label for="newItemInput">Add New Item</label>
+    <div class="add-item-input-group">
+      <input
+        id="newItemInput"
+        type="text"
+        [(ngModel)]="newItemName"
+        placeholder="Enter item name"
+      />
+      <button (click)="addItem()">Add</button>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="storage-main">
     <!-- Items List -->
-    <div class="storage-section">
-      <h4>Items in Storage</h4>
-      <ul>
-        <li *ngFor="let item of storage.items">
-          {{ item.name }}
+    <div class="card-section">
+      <h3>Items in Storage</h3>
+
+      <ul *ngIf="storage.items.length > 0; else noItems" class="item-list">
+        <li *ngFor="let item of storage.items" class="item-line">
+          <span class="item-name">{{ item.name }}</span>
+
+          <div class="item-actions">
+            <button class="btn btn-outline-danger btn-xs">Del</button>
+
+            <div class="qty-group">
+              <input
+                type="number"
+                min="0"
+                placeholder="0"
+              />
+            </div>
+
+            <button class="btn btn-outline-primary btn-xs">Order</button>
+          </div>
         </li>
       </ul>
+
+      <ng-template #noItems>
+        <p class="empty">No items available.</p>
+      </ng-template>
     </div>
 
     <!-- Orders List -->
-    <div class="storage-section">
-      <h4>Orders</h4>
-      <ul>
+    <div class="card-section">
+      <h3>Orders</h3>
+      <ul class="orders-list">
         <li *ngFor="let order of storage.orders">
           {{ order.name }} (Qty Ordered: {{ order.quantityOrdered }})
         </li>
@@ -36,9 +61,9 @@
     </div>
   </div>
 
-  <button (click)="goBack()" class="btn btn-secondary mt-3">Back to Storages</button>
+  <button (click)="goBack()" class="back-btn">← Back to Storages</button>
 </div>
 
 <ng-template #loading>
-  <p>Loading storage details...</p>
+  <p class="loading-text">Loading storage details...</p>
 </ng-template>
