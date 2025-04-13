@@ -24,30 +24,34 @@
     <!-- Items List -->
     <div class="card-section">
       <h3>Items in Storage</h3>
-
       <ul *ngIf="storage.items.length > 0; else noItems" class="item-list">
         <li *ngFor="let item of storage.items" class="item-line">
           <span class="item-name">{{ item.name }}</span>
 
           <div class="item-actions">
-            <button class="btn btn-outline-danger btn-xs">Del</button>
+            <button
+              class="btn btn-outline-danger btn-xs"
+              (click)="deleteItem(item.id!)"
+            >
+              Del
+            </button>
 
             <div class="qty-group">
-     <input
-  type="number"
-  min="1"
-  placeholder="q:"
-  [(ngModel)]="quantities[item.id!]"
-/>
+              <input
+                type="number"
+                min="1"
+                [(ngModel)]="quantities[item.id!]"
+                placeholder="Qty"
+              />
             </div>
 
             <button
-  class="btn btn-outline-primary btn-xs"
-  (click)="placeOrder(item.id!)"
-  [disabled]="!quantities[item.id!]"
->
-  Order
-</button>
+              class="btn btn-outline-primary btn-xs"
+              (click)="placeOrder(item.id!)"
+              [disabled]="!quantities[item.id!] || quantities[item.id!] <= 0"
+            >
+              Order
+            </button>
           </div>
         </li>
       </ul>
@@ -61,9 +65,17 @@
     <div class="card-section">
       <h3>Orders</h3>
       <ul class="orders-list">
-        <li *ngFor="let order of storage.orders">
-          {{ order.name }} (Qty Ordered: {{ order.quantityOrdered }})
-        </li>
+        <ng-container *ngFor="let item of storage.items">
+          <li *ngIf="item.orderedYet">
+            {{ item.name }} (Qty Ordered: {{ item.quantityOrdered }})
+            <button
+              class="btn btn-outline-danger btn-xs"
+              (click)="removeOrder(item.id!)"
+            >
+              Remove
+            </button>
+          </li>
+        </ng-container>
       </ul>
     </div>
   </div>

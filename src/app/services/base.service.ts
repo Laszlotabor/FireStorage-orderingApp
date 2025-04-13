@@ -74,87 +74,38 @@ export class BaseService {
   }
   // Add an item to the orders list----------------------------------------------------------------------
   addItemToOrder(storageId: string, itemId: string, quantity: number) {
-    const storageRef = this.firestore.collection('storages').doc(storageId);
-    const itemRef = storageRef.collection('items').doc(itemId);
+    const itemRef = this.firestore
+      .collection('storages')
+      .doc(storageId)
+      .collection('items')
+      .doc<Item>(itemId);
 
-    return itemRef
-      .get()
-      .toPromise()
-      .then((doc) => {
-        // Check if the document exists and is defined
-        if (doc && doc.exists) {
-          const item = doc.data() as Item;
-          if (item) {
-            // Update the item with isOrdered set to true and add the quantityOrdered
-            return itemRef
-              .update({
-                isOrdered: true,
-                quantityOrdered: item.quantityOrdered + quantity, // Add to existing quantityOrdered
-              })
-              .then(() => {
-                return { success: true }; // Return a success response
-              });
-          } else {
-            return { success: false, message: 'Item data is undefined' }; // Return failure response if item data is undefined
-          }
-        } else {
-          console.error('Item document does not exist');
-          return { success: false, message: 'Item document does not exist' }; // Return failure response if the document does not exist
-        }
-      })
-      .catch((error) => {
-        console.error('Error updating item:', error);
-        return { success: false, message: error.message }; // Return failure response on error
-      });
+    return itemRef.update({
+      orderedYet: true,
+      quantityOrdered: quantity,
+    });
   }
 
   // Remove an item from the orders list---------------------------------------------------------------
-  removeItemFromOrder(storageId: string, orderId: string) {
-    const storageRef = this.firestore.collection('storages').doc(storageId);
-    const orderRef = storageRef.collection('orders').doc(orderId);
+  removeItemFromOrder(storageId: string, itemId: string) {
+    const itemRef = this.firestore
+      .collection('storages')
+      .doc(storageId)
+      .collection('items')
+      .doc<Item>(itemId);
 
-    return orderRef
-      .delete()
-      .then(() => {
-        console.log('Item removed from orders.');
-        // Optionally, you could also update the item in the "items" collection to decrement the ordered quantity
-      })
-      .catch((error) => {
-        console.error('Error removing item from order:', error);
-        throw error;
-      });
+    return itemRef.update({
+      orderedYet: false,
+      quantityOrdered: 0,
+    });
   }
-  // Add this inside BaseService
-  placeOrder(
-    storageId: string,
-    itemId: string,
-    quantity: number
-  ): Promise<any> {
-    const storageRef = this.firestore.collection('storages').doc(storageId);
-    const itemRef = storageRef.collection('items').doc(itemId);
-    const orderRef = storageRef.collection('orders');
-
-    return itemRef
-      .get()
-      .toPromise()
-      .then((doc) => {
-        if (doc && doc.exists) {
-          const item = doc.data() as Item;
-
-          const order: Item = {
-            ...item,
-            quantityOrdered: quantity,
-            orderedYet: true,
-          };
-
-          return orderRef.add(order);
-        } else {
-          throw new Error('Item not found or undefined');
-        }
-      })
-      .catch((error) => {
-        console.error('Order placement failed:', error);
-        throw error;
-      });
+  //------------------------------------------------------------------------------------------------
+  updateItem(storageId: string, itemId: string, data: Partial<Item>) {
+    return this.firestore
+      .collection('storages')
+      .doc(storageId)
+      .collection<Item>('items')
+      .doc(itemId)
+      .update(data);
   }
 }

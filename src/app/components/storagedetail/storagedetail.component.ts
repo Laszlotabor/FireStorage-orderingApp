@@ -48,7 +48,7 @@ export class StoragedetailComponent {
 
     const newItem: Item = {
       name: trimmedName,
-      quantity: 0,
+
       quantityOrdered: 0,
       orderedYet: false,
     };
@@ -61,22 +61,42 @@ export class StoragedetailComponent {
       .catch((error) => console.error('Error adding item:', error));
   }
 
-  placeOrder(itemId: string): void {
+  placeOrder(itemId: string) {
     const quantity = this.quantities[itemId];
-
-    if (!quantity || quantity <= 0) {
-      alert('Please enter a valid quantity.');
-      return;
-    }
+    if (!quantity || quantity <= 0) return;
 
     this.baseService
-      .placeOrder(this.storageId, itemId, quantity)
+      .addItemToOrder(this.storageId, itemId, quantity)
       .then(() => {
-        console.log('Order placed successfully!');
-        this.quantities[itemId] = 0;
+        this.quantities[itemId] = 0; // reset input
+      });
+  }
+  deleteItem(itemId: string): void {
+    if (!itemId) return;
+
+    this.baseService
+      .removeItemFromStorage(this.storageId, itemId)
+      .then(() => {
+        console.log(`Item ${itemId} deleted`);
       })
-      .catch((err) => {
-        console.error('Failed to place order:', err);
+      .catch((error) => {
+        console.error('Error deleting item:', error);
+      });
+  }
+
+  removeOrder(itemId: string): void {
+    if (!itemId) return;
+
+    this.baseService
+      .updateItem(this.storageId, itemId, {
+        orderedYet: false,
+        quantityOrdered: 0,
+      })
+      .then(() => {
+        console.log(`Order for item ${itemId} removed`);
+      })
+      .catch((error) => {
+        console.error('Error removing order:', error);
       });
   }
 }
