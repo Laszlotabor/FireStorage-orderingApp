@@ -2,7 +2,7 @@
   <!-- Header -->
   <div class="header">
     <h2>{{ storage.name }}</h2>
-    <h4>Creator: <span>{{ storage.creatorId }}</span></h4>
+    <h4>createdBy: <span>{{ storage.creatorId }}</span></h4>
   </div>
 
   <!-- Add New Item -->
@@ -41,7 +41,7 @@
                 type="number"
                 min="1"
                 [(ngModel)]="quantities[item.id!]"
-                placeholder="Qty"
+                placeholder="Q:"
               />
             </div>
 
