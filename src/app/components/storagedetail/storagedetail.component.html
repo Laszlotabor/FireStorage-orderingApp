@@ -33,14 +33,21 @@
             <button class="btn btn-outline-danger btn-xs">Del</button>
 
             <div class="qty-group">
-              <input
-                type="number"
-                min="0"
-                placeholder="0"
-              />
+     <input
+  type="number"
+  min="1"
+  placeholder="q:"
+  [(ngModel)]="quantities[item.id!]"
+/>
             </div>
 
-            <button class="btn btn-outline-primary btn-xs">Order</button>
+            <button
+  class="btn btn-outline-primary btn-xs"
+  (click)="placeOrder(item.id!)"
+  [disabled]="!quantities[item.id!]"
+>
+  Order
+</button>
           </div>
         </li>
       </ul>

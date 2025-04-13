@@ -124,4 +124,37 @@ export class BaseService {
         throw error;
       });
   }
+  // Add this inside BaseService
+  placeOrder(
+    storageId: string,
+    itemId: string,
+    quantity: number
+  ): Promise<any> {
+    const storageRef = this.firestore.collection('storages').doc(storageId);
+    const itemRef = storageRef.collection('items').doc(itemId);
+    const orderRef = storageRef.collection('orders');
+
+    return itemRef
+      .get()
+      .toPromise()
+      .then((doc) => {
+        if (doc && doc.exists) {
+          const item = doc.data() as Item;
+
+          const order: Item = {
+            ...item,
+            quantityOrdered: quantity,
+            orderedYet: true,
+          };
+
+          return orderRef.add(order);
+        } else {
+          throw new Error('Item not found or undefined');
+        }
+      })
+      .catch((error) => {
+        console.error('Order placement failed:', error);
+        throw error;
+      });
+  }
 }

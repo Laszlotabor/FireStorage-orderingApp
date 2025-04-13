@@ -20,6 +20,9 @@ export class StoragedetailComponent {
   storageId!: string;
   newItemName: string = '';
 
+  // Tracks input quantities per item ID
+  quantities: { [itemId: string]: number } = {};
+
   constructor(
     private baseService: BaseService,
     private route: ActivatedRoute,
@@ -56,5 +59,24 @@ export class StoragedetailComponent {
         this.newItemName = '';
       })
       .catch((error) => console.error('Error adding item:', error));
+  }
+
+  placeOrder(itemId: string): void {
+    const quantity = this.quantities[itemId];
+
+    if (!quantity || quantity <= 0) {
+      alert('Please enter a valid quantity.');
+      return;
+    }
+
+    this.baseService
+      .placeOrder(this.storageId, itemId, quantity)
+      .then(() => {
+        console.log('Order placed successfully!');
+        this.quantities[itemId] = 0;
+      })
+      .catch((err) => {
+        console.error('Failed to place order:', err);
+      });
   }
 }
