@@ -22,6 +22,10 @@ export class StorageworksComponent {
 
   // Method to add a new storage
   addStorage() {
+    if (!this.storageName || !this.creatorName) {
+      alert('Please fill in both the storage name and creator name.');
+      return;
+    }
     // Prepare storage object
     const newStorage: Storage = {
       name: this.storageName,
@@ -34,7 +38,7 @@ export class StorageworksComponent {
     this.baseService
       .createStorage(newStorage)
       .then(() => {
-        alert('Storage created successfully!');
+        alert('Storage ' + this.storageName + ' created successfully!');
         this.resetForm();
       })
       .catch((error) => {
@@ -46,4 +50,7 @@ export class StorageworksComponent {
     this.storageName = '';
     this.creatorName = '';
   }
+  toStorages() {
+    this.router.navigate(['/mystorages'])
+  };
 }

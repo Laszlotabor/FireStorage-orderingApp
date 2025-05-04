@@ -1,0 +1,62 @@
+.home-container {
+    padding: 20px;
+    
+}
+
+.intro-card {
+    background: #1b0b35;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.intro-card h1 {
+    color: #70d4e6;
+}
+
+.intro-description {
+    font-size: 1.2em;
+    color: #36a9ad;
+}
+
+.tech-stack,
+.features,
+.purpose {
+    margin-top: 30px;
+}
+
+.tech-stack ul,
+.features ul,
+.purpose ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+li{
+    color: #5b98d4;
+}
+
+.tech-stack h2,
+.features h2,
+.purpose  {
+    color: #d5dde6;
+}
+
+.cta {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.cta-btn {
+    background-color: #3678a3;
+    color: white;
+    padding: 12px 20px;
+    font-size: 1.2em;
+    border-radius: 5px;
+    text-decoration: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cta-btn:hover {
+    background-color: #2980b9;
+}
