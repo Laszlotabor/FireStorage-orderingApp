@@ -1,47 +1,70 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* Ensures consistent layout and prevents overflow */
+}
+
+html,
+body {
+    height: 100%;
+    /* Ensure body takes up full height */
+    overflow: hidden;
+    /* Prevent scrolling */
+}
+
 .manul-container {
-        text-align: center;
-        padding: 2rem;
-        
-        color: #f1f1f1;
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-
-h1 {
-    position: fixed;
-    top: 100px;
-    font-size: 5rem;
-    color: orange;
-
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    /* Takes full height of the viewport */
+    text-align: center;
+    background-image: url('/assets/images/haluci.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    /* Light background */
+    overflow: hidden;
+    /* Prevent any internal overflow */
 }
 
-.subtitle {
-    font-size: 1.2rem;
+.manul-container h1 {
+    font-size: 3rem;
+    color: #333;
     margin-bottom: 2rem;
-    color: #aaa;
-}
-
-.manul-image {
-    max-width: 90%;
-    border-radius: 20px;
-    box-shadow: 0 0 30px rgba(255, 255, 255, 0.15);
-    margin-bottom: 2rem;
+    font-family: 'Arial', sans-serif;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .enter-button {
-    background-color: #4caf50;
-    color: white;
     padding: 1rem 2rem;
-    font-size: 1.2rem;
+    background-color: #3498db;
+    /* Blue color */
     border: none;
-    border-radius: 10px;
+    color: white;
+    font-size: 1.2rem;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s;
 }
 
 .enter-button:hover {
-    background-color: #43a047;
+    background-color: #2980b9;
+    /* Darker blue on hover */
+}
+
+.image-container {
+    margin-top: 3rem;
+    width: 80%;
+    max-width: 500px;
+    /* Limit the size of the image */
+}
+
+.image-container img {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* Shadow for 3D effect */
 }

@@ -42,12 +42,14 @@
                 type="number"
                 min="1"
                 [(ngModel)]="quantities[item.id!]"
+                (keydown.enter)="placeOrder(item.id!)"  
                 placeholder="Q:"
               />
             </div>
 
             <button
               class="btn btn-outline-primary btn-xs"
+              
               (click)="placeOrder(item.id!)"
               [disabled]="!quantities[item.id!] || quantities[item.id!] <= 0"
             >

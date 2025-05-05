@@ -1,8 +1,12 @@
 .storage-container {
     max-width: 960px;
-    margin: 40px auto;
+    margin: 70px auto 0;
     padding: 24px;
-    background: #f8f9fc;
+    
+    background-image: url('/assets/images/manucika2.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     
