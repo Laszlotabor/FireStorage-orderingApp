@@ -14,6 +14,7 @@
         type="text"
         [(ngModel)]="newItemName"
         placeholder="Enter item name"
+        (keydown.enter)="addItem()"  
       />
       <button (click)="addItem()">Add</button>
     </div>
