@@ -1,165 +1,156 @@
+/* Base styles */
 .storage-container {
-    max-width: 960px;
-    margin: 70px auto 0;
-    padding: 24px;
-    
+    max-width: 1200px;
+    margin: 60px auto 0;
+    padding: 20px;
     background-image: url('/assets/images/manucika2.jpg');
     background-size: cover;
-    background-repeat: no-repeat;
-    
     border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    color: #333;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 30px;
 }
 
 .header h2 {
-    font-size: 1.75rem;
-    color: #2c7ccc;
+    font-size: 2rem;
+    margin-bottom: 0.3em;
+    color: orange;
 }
 
-.header h4 {
-    color: #6c757d;
-    margin-top: 5px;
-}
-
-/* Add Item Card */
-.add-item-card {
-    margin: 20px 0;
-}
-
-.add-item-card label {
-    display: block;
-    margin-bottom: 6px;
+.header h4 span {
     font-weight: 500;
+    color: #dd9510;
+}
+
+.back-btn {
+    display: inline-block;
+    color: orange;
+    margin-bottom: 20px;
+    padding: 8px 16px;
+    background-color: rgba(0, 0, 0, 0.1);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.back-btn:hover {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+/* Add Item Section */
+.add-item-card {
+    background-color: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 30px;
 }
 
 .add-item-input-group {
     display: flex;
+    flex-wrap: wrap;
     gap: 10px;
+    margin-top: 10px;
 }
 
 .add-item-input-group input {
-    
+    flex: 1;
     padding: 8px;
-    border: 1px solid #e21919;
+    border: 1px solid #ccc;
     border-radius: 6px;
-    
 }
 
 .add-item-input-group button {
-    padding: 8px 14px;
-    background-color: #0d6efd;
-    color: #fff;
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: white;
     border: none;
     border-radius: 6px;
     cursor: pointer;
 }
 
 .add-item-input-group button:hover {
-    background-color: #0b5ed7;
+    background-color: #0056b3;
 }
 
-/* Layout Columns */
+/* Main Layout */
 .storage-main {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 30px;
 }
 
 .card-section {
-    flex: 1;
-    min-width: 300px;
-    background: #fff;
+    flex: 1 1 400px;
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 20px;
     border-radius: 10px;
-    padding: 16px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
 }
 
 .card-section h3 {
-    margin-bottom: 12px;
-    font-size: 1.2rem;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
 }
 
-/* Items List Compact */
-.item-list {
+.item-list,
+.orders-list {
     list-style: none;
-    padding-left: 0;
+    padding: 0;
+    margin: 0;
 }
 
-.item-line {
+.item-line,
+.orders-list li {
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
     align-items: center;
-    padding: 6px 0;
-    border-bottom: 1px solid #eee;
-    font-size: 0.9rem;
-}
-
-.item-name {
-    flex: 1;
-    margin-right: 10px;
-    color: #333;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px dashed #ccc;
 }
 
 .item-actions {
     display: flex;
+    gap: 10px;
     align-items: center;
-    gap: 6px;
+    margin-top: 5px;
+    flex-wrap: wrap;
 }
 
 .qty-group input {
-    width: 50px;
-    padding: 3px 6px;
-    font-size: 0.85rem;
-    border: 1px solid #ccc;
+    width: 80px;
+    padding: 4px;
     border-radius: 4px;
+    border: 1px solid #bbb;
 }
 
-/* Button XS Style */
-.btn-xs {
-    padding: 4px 8px;
-    font-size: 0.8rem;
-    border-radius: 4px;
-}
-
-/* Orders */
-.orders-list {
-    list-style: none;
-    padding-left: 0;
-}
-
-.orders-list li {
-    margin-bottom: 6px;
-}
-
-/* Back Button */
-.back-btn {
-    margin-top: 30px;
-    padding: 10px 18px;
-    background-color: #6c757d;
-    color: #fff;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-}
-
-.back-btn:hover {
-    background-color: #5c636a;
-}
-
-/* Loading & Empty States */
-.loading-text,
-.empty {
-    color: #777;
+.empty,
+.loading-text {
     font-style: italic;
+    color: #999;
     margin-top: 10px;
 }
 
-/* Responsive */
+/* Responsive tweaks */
 @media (max-width: 768px) {
+    .storage-container {
+        padding: 15px;
+    }
+
+    .header h2 {
+        font-size: 1.6rem;
+    }
+
     .storage-main {
         flex-direction: column;
     }
@@ -170,6 +161,45 @@
     }
 
     .item-actions {
-        margin-top: 4px;
+        flex-direction: row;
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+        gap: 10px;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .qty-group input {
+        flex: 0 0 70px;
+        max-width: 100%;
+    }
+
+    .btn-xs {
+        padding: 6px 10px;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .storage-container {
+        background-image: url('/assets/images/manucika3.jpg');
+    }
+
+    .add-item-input-group {
+        flex-direction: column;
+    }
+
+    .add-item-input-group input,
+    .add-item-input-group button {
+        width: 100%;
+    }
+
+    .qty-group input {
+        width: 100%;
+    }
+
+    .back-btn {
+        width: 100%;
+        text-align: center;
     }
 }

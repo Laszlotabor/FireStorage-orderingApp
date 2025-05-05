@@ -1,13 +1,14 @@
 <div class="storage-container" *ngIf="storage$ | async as storage; else loading">
   <!-- Header -->
   <div class="header">
-    <h2>{{ storage.name }}</h2>
-    <h4>createdBy: <span>{{ storage.creatorId }}</span></h4>
+    <h2>{{ storage.name }} - storage</h2>
+    <h4 style="color: aliceblue;">createdBy: <span>{{ storage.creatorId }}</span></h4>
   </div>
+  <button (click)="goBack()" class="back-btn">← Back to Storages</button>
 
   <!-- Add New Item -->
   <div class="add-item-card">
-    <label for="newItemInput">Add New Item</label>
+    <label style="color: aliceblue;" for="newItemInput">Add New Item</label>
     <div class="add-item-input-group">
       <input
         id="newItemInput"
@@ -17,6 +18,7 @@
         (keydown.enter)="addItem()"  
       />
       <button (click)="addItem()">Add</button>
+      
     </div>
   </div>
 
@@ -48,7 +50,7 @@
             </div>
 
             <button
-              class="btn btn-outline-primary btn-xs"
+              class="btn btn-primary btn-xs"
               
               (click)="placeOrder(item.id!)"
               [disabled]="!quantities[item.id!] || quantities[item.id!] <= 0"
@@ -82,8 +84,6 @@
       </ul>
     </div>
   </div>
-
-  <button (click)="goBack()" class="back-btn">← Back to Storages</button>
 </div>
 
 <ng-template #loading>

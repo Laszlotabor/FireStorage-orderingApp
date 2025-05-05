@@ -38,7 +38,8 @@ export class MystoragesComponent {
     this.baseService
       .deleteStorage(storageId)
       .then(() => {
-        console.log('Storage deleted successfully!');
+        alert('Storage deleted successfully!');
+        
       })
       .catch((error) => {
         console.error('Error deleting storage:', error);
