@@ -9,50 +9,49 @@ html,
 body {
     height: 100%;
     overflow: hidden;
-    /* No scroll */
 }
 
 .manul-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+    /* Push bottom content down */
     height: 100vh;
-    text-align: center;
-    background-image: url('/assets/images/manucika2.jpg');
+    background-image: url('/assets/images/manucika4.jpg');
     background-size: cover;
-    
     background-position: center;
-    padding: 2rem;
+    padding: 1.5rem;
 }
 
-
+.spacer {
+    flex-grow: 1;
+}
 
 .content-wrapper {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between;
+    align-items: flex-end;
     gap: 2rem;
-    /* max-width: 1000px; */
-    width: 100%;
     flex-wrap: wrap;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    /* optional overlay */
+    padding: 1rem;
+    border-radius: 12px;
 }
 
 .intro-text {
     flex: 1 1 65%;
-    background-color: rgba(0, 0, 0, 0.5);
     color: white;
-    padding: 1.5rem;
-    border-radius: 10px;
     font-size: 1rem;
     line-height: 1.5;
     text-align: left;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
 }
 
 .enter-button {
     flex: 1 1 25%;
-    padding: 1.2rem 2rem;
+    padding: 1rem 2rem;
     background-color: #3498db;
     border: none;
     color: white;
@@ -60,31 +59,33 @@ body {
     border-radius: 10px;
     cursor: pointer;
     height: fit-content;
-    align-self: center;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s ease;
 }
 
 .enter-button:hover {
     background-color: #2980b9;
 }
 
+/* Responsive: stack items and adjust font size */
 @media (max-width: 768px) {
     .content-wrapper {
         flex-direction: column;
-    }
-
-    .intro-text,
-    .enter-button {
-        flex: 1 1 100%;
+        align-items: center;
         text-align: center;
     }
 
-@media (max-width: 768px){
-     .content-wrapper{
-        flex-direction: row;
-     }
-     .intro-text{
-        font-size: 0.7rem;
-     }
+    .intro-text {
+        font-size: 0.85rem;
+        flex: unset;
+    }
+
+    .enter-button {
+        width: 100%;
+        font-size: 1rem;
+    }
+        @media (max-width: 480px){
+            .content-wrapper{
+                flex-direction: row;
+            }
         }
 }
