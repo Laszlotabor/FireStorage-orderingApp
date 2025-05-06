@@ -2,12 +2,16 @@
 .storage-list-container {
     max-width: 900px;
     margin: 100px auto 0;
-    padding: 50px;
+    padding: 10px;
     background-image: url('/assets/images/manucika3.jpg');
     background-size: cover;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: aliceblue;
     
+}
+h2{
+    color: orange;
 }
 
 /* Storage Item Container */
@@ -19,7 +23,7 @@
     /* Aligns items vertically */
     padding: 10px;
     border-radius: 5px;
-    background-color: #a9c4e2;
+    background-color: rgba(0, 0, 0, 0.5);
     margin-bottom: 15px;
 }
 

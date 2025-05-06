@@ -2,76 +2,89 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /* Ensures consistent layout and prevents overflow */
     font-family: "Vollkorn SC", serif;
 }
 
 html,
 body {
     height: 100%;
-    /* Ensure body takes up full height */
     overflow: hidden;
-    /* Prevent scrolling */
-    
+    /* No scroll */
 }
 
 .manul-container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     height: 100vh;
-    /* Takes full height of the viewport */
     text-align: center;
     background-image: url('/assets/images/manucika2.jpg');
     background-size: cover;
-    background-repeat: no-repeat;
-    /* Light background */
-    overflow: hidden;
-    /* Prevent any internal overflow */
+    
+    background-position: center;
+    padding: 2rem;
 }
 
-.manul-container h1 {
-    font-size: 5rem;
-    color: #333;
-    margin-bottom: 2rem;
-    color: orange;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+
+
+.content-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    /* max-width: 1000px; */
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.intro-text {
+    flex: 1 1 65%;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    font-size: 1rem;
+    line-height: 1.5;
+    text-align: left;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .enter-button {
-    padding: 1rem 2rem;
+    flex: 1 1 25%;
+    padding: 1.2rem 2rem;
     background-color: #3498db;
-    /* Blue color */
     border: none;
     color: white;
     font-size: 1.2rem;
-    border-radius: 8px;
+    border-radius: 10px;
     cursor: pointer;
+    height: fit-content;
+    align-self: center;
     transition: background-color 0.3s;
 }
 
 .enter-button:hover {
     background-color: #2980b9;
-    /* Darker blue on hover */
 }
 
-.image-container {
-    margin-top: 3rem;
-    width: 80%;
-    max-width: 500px;
-    /* Limit the size of the image */
-}
-
-.image-container img {
-    width: 100%;
-    height: auto;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    /* Shadow for 3D effect */
-}
-@media (max-width: 480px){
-    .manul-container{
-        background-image: url('/assets/images/manucika3.jpg');
+@media (max-width: 768px) {
+    .content-wrapper {
+        flex-direction: column;
     }
+
+    .intro-text,
+    .enter-button {
+        flex: 1 1 100%;
+        text-align: center;
+    }
+
+@media (max-width: 768px){
+     .content-wrapper{
+        flex-direction: row;
+     }
+     .intro-text{
+        font-size: 0.7rem;
+     }
+        }
 }
